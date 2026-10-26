@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Campus Unlocked | Your Exclusive Drop{% endblock %}
+{% block content %}
+<section class="hero-panel">
+  <div class="topline">
+    <span class="eyebrow">CAMPUS EXCLUSIVE · 2026</span>
+    <span class="live-pill"><span class="live-dot"></span> YOUR DROP IS HERE</span>
+  </div>
+
+  <div class="hero-copy">
+    <div class="drop-art" aria-hidden="true">
+      <div class="halo"></div>
+      <div class="gift-box">
+        <div class="gift-lid"></div>
+        <div class="gift-ribbon-v"></div>
+        <div class="gift-ribbon-h"></div>
+        <div class="gift-bow bow-left"></div>
+        <div class="gift-bow bow-right"></div>
+        <div class="gift-star">✦</div>
+      </div>
+      <span class="spark spark-one">✦</span>
+      <span class="spark spark-two">✧</span>
+      <span class="spark spark-three">✦</span>
+      <span class="art-label">01 / UNLOCK</span>
+    </div>
+
+    <div class="hero-text">
+      <div class="micro-label">A LITTLE SOMETHING. JUST FOR CAMPUS.</div>
+      <h1>Good things<br><span>come to those</span><br>who scan.</h1>
+      <p class="hero-sub">Your campus-exclusive surprise is one quick step away.</p>
+    </div>
+  </div>
+
+  <div class="unlock-strip">
+    <div>
+      <span class="strip-label">THE CAMPUS DROP</span>
+      <strong>Something for everyone.</strong>
+    </div>
+    <div class="strip-number">01<span>/01</span></div>
+  </div>
+
+  <div class="form-heading">
+    <div>
+      <span class="micro-label">UNLOCK ACCESS</span>
+      <h2>Make it yours.</h2>
+    </div>
+    <span class="time-chip">⏱ ~30 SEC</span>
+  </div>
+  <p class="muted">Enter your details to reveal what’s behind the scan.</p>
+
+  <form action="{{ url_for('submit') }}" method="post" class="unlock-form">
+    <input type="hidden" name="_csrf" value="{{ csrf }}">
+    <div class="form-grid">
+      <div class="field">
+        <label for="full_name">Full name</label>
+        <input id="full_name" name="full_name" maxlength="100" autocomplete="name" required placeholder="Your name">
+      </div>
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" maxlength="25" autocomplete="tel" required placeholder="Your phone number">
+      </div>
+      <div class="field field-wide">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" maxlength="254" autocomplete="email" required placeholder="you@example.com">
+      </div>
+      <div class="field field-wide">
+        <label for="participant_group">Campus role</label>
+        <select id="participant_group" name="participant_group" required>
+          <option value="">Choose your role</option>
+          <option value="student">Student</option>
+          <option value="faculty">Faculty member</option>
+          <option value="staff">Non-teaching staff</option>
+          <option value="visitor">Visitor / other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="privacy">
+      <div class="privacy-icon">i</div>
+      <div>
+        <strong>Before you unlock</strong>
+        <p>Your name, phone number, email address and campus role will be used to administer the Campus Unlocked activity. Access is restricted to authorised campaign staff. Data controller/contact: <strong>[insert authorised office and contact]</strong>. Deletion date: <strong>[insert specific date]</strong>. Please review the college’s full privacy notice before continuing.</p>
+        <p>Never enter passwords, financial information, student IDs or other sensitive information.</p>
+      </div>
+    </div>
+
+    <label class="choice"><input type="checkbox" name="activity_consent" value="yes" required> <span>I have read the privacy notice and consent to the collection of the details listed above for this activity.</span></label>
+    <label class="choice optional"><input type="checkbox" name="updates_consent" value="yes"> <span>Optional: I’d like to receive future Campus Unlocked or cybersecurity-awareness updates.</span></label>
+
+    <button type="submit" class="unlock-button"><span>UNLOCK MY SURPRISE</span><span class="button-arrow">↗</span></button>
+    <div class="secure-note"><span>◆</span> One scan. One surprise. <span class="dot-sep">·</span> No passwords required.</div>
+  </form>
+  <p class="tiny">Replace the privacy notice placeholders and obtain institutional approval before collecting real participant data.</p>
+</section>
+{% endblock %}

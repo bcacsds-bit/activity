@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CAMPUS UNLOCKED{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header class="brand">
+      <div class="brand-main">
+        <div class="mark">CAMPUS <span>UNLOCKED.</span></div>
+        <div class="tagline">ONE SCAN. ONE SURPRISE.</div>
+      </div>
+      <div class="brand-family" aria-label="Organising department, association and club">
+        <span class="brand-label">BROUGHT TO YOU BY</span>
+        <span class="brand-chip department-chip">CYBER SECURITY <b>×</b> DATA SCIENCE</span>
+        <span class="brand-chip association-chip">THE ANONYMOUS LAB</span>
+        <span class="brand-chip club-chip">CIPHER <b>X</b></span>
+      </div>
+    </header>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}<div class="notice" role="alert">{% for message in messages %}{{ message }}{% endfor %}</div>{% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+    <footer>
+      <div class="footer-brand">An initiative by <strong>Department of Cyber Security with Data Science</strong></div>
+      <div class="footer-groups"><span>The Anonymous Lab · Department Association</span><span>Cipher X · Department Club</span></div>
+    </footer>
+  </main>
+</body>
+</html>

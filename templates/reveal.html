@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}The Reveal | Campus Unlocked{% endblock %}
+{% block content %}
+<section class="reveal-panel">
+  <div class="reveal-topline"><span class="eyebrow">CAMPUS UNLOCKED</span><span class="reveal-stamp">THE REVEAL</span></div>
+  <div class="reveal-quote">
+    <span class="reveal-quote-mark">“</span>
+    <h1>ALL THAT GLITTERS<br><span>IS NOT GOLD.</span></h1>
+  </div>
+  <div class="reveal-divider"><span>THE REAL SURPRISE</span></div>
+  <h2>You came for the promise.<br><span>Now take the lesson.</span></h2>
+  <p class="reveal-lead">That curiosity you felt? That little pull to see what was waiting? That’s exactly what a convincing lure is designed to create.</p>
+  <div class="reveal-message">
+    <div class="reveal-icon">!</div>
+    <div>
+      <strong>This was a cybersecurity awareness simulation.</strong>
+      <p>A QR code can look official. A page can look polished. A promise can feel irresistible. None of those things prove that the destination—or the request for your data—is trustworthy.</p>
+    </div>
+  </div>
+  <div class="lesson">
+    <h2>Before the next scan, pause.</h2>
+    <ul>
+      <li><strong>Preview the link.</strong> Check the destination and look for misspellings or unexpected domains.</li>
+      <li><strong>Verify the source.</strong> A familiar logo or campus poster can be copied.</li>
+      <li><strong>Question the ask.</strong> Does this page really need your personal information to deliver what it promises?</li>
+      <li><strong>Walk away when unsure.</strong> Confirm with the organiser or visit the official website directly.</li>
+    </ul>
+  </div>
+  <p class="hard-hitting">The trap isn’t always a fake link.<br><strong>Sometimes, it’s the promise that makes you stop thinking.</strong></p>
+
+  <section class="feedback-card">
+    <div class="micro-label">HELP US MEASURE THE IMPACT</div>
+    <h2>One quick reaction?</h2>
+    <p class="muted">Your feedback is optional and stored separately from your registration details.</p>
+    <form action="{{ url_for('submit_feedback') }}" method="post" class="feedback-form">
+      <input type="hidden" name="_csrf" value="{{ csrf }}">
+      <fieldset>
+        <legend>After this reveal, will you be more careful before scanning an unfamiliar QR code?</legend>
+        <label class="feedback-option"><input type="radio" name="qr_intention" value="Yes" required> Yes, definitely</label>
+        <label class="feedback-option"><input type="radio" name="qr_intention" value="Maybe"> I’ll think twice</label>
+        <label class="feedback-option"><input type="radio" name="qr_intention" value="No change"> No change</label>
+      </fieldset>
+      <fieldset>
+        <legend>What stood out most?</legend>
+        <select name="key_takeaway" required>
+          <option value="">Choose one</option>
+          <option value="Check the destination">Checking the QR destination</option>
+          <option value="Question the promise">Questioning an attractive promise</option>
+          <option value="Protect personal data">Protecting personal data</option>
+          <option value="Verify the source">Verifying who shared the QR code</option>
+        </select>
+      </fieldset>
+      <button type="submit" class="feedback-button">SUBMIT ANONYMOUS FEEDBACK <span>↗</span></button>
+    </form>
+  </section>
+  <p class="small"><strong>Your data matters:</strong> the details you entered are stored for the stated activity purpose under the approved privacy notice and should be deleted according to the stated retention schedule. Optional updates consent is separate from participation.</p>
+  <form action="{{ url_for('awareness_complete') }}" method="post">
+    <input type="hidden" name="_csrf" value="{{ csrf }}">
+    <button type="submit" class="unlock-button"><span>I’LL THINK BEFORE I SCAN</span><span class="button-arrow">✓</span></button>
+  </form>
+  <p class="reveal-footer">An initiative by the Department of Cyber Security with Data Science</p>
+</section>
+{% endblock %}

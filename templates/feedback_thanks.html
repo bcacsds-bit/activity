@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Feedback Received | Campus Unlocked{% endblock %}
+{% block content %}
+<section class="panel feedback-thanks">
+  <div class="symbol success">✓</div>
+  <p class="eyebrow">RESPONSE RECEIVED</p>
+  <h1>Thanks for making the message count.</h1>
+  <p class="muted">Your feedback has been recorded without your name, phone number, email address or registration ID. Stay curious—but verify before you trust.</p>
+  <a class="back-link" href="{{ url_for('index') }}">Return to Campus Unlocked ↗</a>
+</section>
+{% endblock %}

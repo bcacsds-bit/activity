@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Campaign Summary | Campus Unlocked{% endblock %}
+{% block content %}
+<section class="panel">
+  <h1>Campaign summary</h1>
+  <p class="muted">Restricted to authorised campaign staff. Access via the X-Admin-Token request header.</p>
+  <h2>Event counts</h2>
+  <table><tr><th>Event</th><th>Total</th></tr>{% for row in counts %}<tr><td>{{ row.event_type }}</td><td>{{ row.total }}</td></tr>{% endfor %}</table>
+  <h2>Registrations by role</h2>
+  <table><tr><th>Role</th><th>Total</th></tr>{% for row in groups %}<tr><td>{{ row.participant_group }}</td><td>{{ row.total }}</td></tr>{% endfor %}</table>
+  <h2>Anonymous participant feedback</h2>
+  <p class="muted">Responses are stored separately from registration details. These aggregate counts are suitable for reporting; do not claim they represent all participants unless response coverage supports that conclusion.</p>
+  <p><strong>Total feedback responses:</strong> {{ feedback_total }}</p>
+  <h3>Intention to be more careful before scanning</h3>
+  <table><tr><th>Response</th><th>Count</th></tr>{% for label, total in intention_counts.items() %}<tr><td>{{ label }}</td><td>{{ total }}</td></tr>{% endfor %}</table>
+  <h3>Most notable takeaway</h3>
+  <table><tr><th>Takeaway</th><th>Count</th></tr>{% for label, total in takeaway_counts.items() %}<tr><td>{{ label }}</td><td>{{ total }}</td></tr>{% endfor %}</table>
+  <p><a class="download-link" href="{{ url_for('export_feedback_csv') }}">Download anonymous feedback CSV</a></p>
+  <h2>Identifiable registrations</h2>
+  <p>Highly restricted. Use only for the approved activity purpose. Delete records and applicable backups at the approved retention deadline.</p>
+  <table><tr><th>Name</th><th>Phone</th><th>Email</th><th>Role</th><th>Updates opt-in</th><th>Timestamp UTC</th></tr>
+  {% for row in registrations %}<tr><td>{{ row.full_name }}</td><td>{{ row.phone }}</td><td>{{ row.email }}</td><td>{{ row.participant_group }}</td><td>{{ "Yes" if row.updates_consent else "No" }}</td><td>{{ row.created_at }}</td></tr>{% endfor %}
+  </table>
+</section>
+{% endblock %}
